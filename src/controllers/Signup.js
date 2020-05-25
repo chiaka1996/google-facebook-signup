@@ -1,4 +1,8 @@
+// saved on my github repo as google-facebook-signup
+
 import React, { Component } from 'react'
+import { GoogleLogin } from 'react-google-login';
+import FacebookLogin from 'react-facebook-login';
 import axios from 'axios'
 
 export default class Signup extends Component {
@@ -16,6 +20,7 @@ export default class Signup extends Component {
     }
   }
 
+  
   onChangeEmail(e) {
     this.setState({
       email: e.target.value,
@@ -51,12 +56,37 @@ export default class Signup extends Component {
   
 
   render() {
+
+    const responseGoogle = (response) => {
+      console.log(response);
+    }
+
+    const responseFacebook = (response) => {
+      console.log(response);
+    }
+
     return(
         <div>
           <div>
           <span>{this.state.reply}</span>
+
+      {/* project ID : sincere-office-278314 */}
+          <GoogleLogin
+    clientId="644327615477-p9jv7hr2j3mouu4ip5gqjqt8al7sr6h3.apps.googleusercontent.com"
+    buttonText="Login"
+    onSuccess={responseGoogle}
+    onFailure={responseGoogle}
+  />
+
+<FacebookLogin
+    appId = "265359627993051"
+    textButton = "Log in with Facebook"
+    fields="name,email,picture" 
+    callback={responseFacebook}
+     />
+
             <form >
-              
+            
             <div className="form-group">
                 <label>Email address</label>
                 <input type="text" className="form-control" 
